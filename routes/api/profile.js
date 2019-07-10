@@ -14,12 +14,12 @@ const Post = require('../../models/Post');
 // @access   Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      'user',
-      ['name', 'avatar']
-    );
+    console.log("profile me: ",req.user.id);
+    const profile = await Profile.findOne({ user: req.user.id });
+    console.log(profile);
 
     if (!profile) {
+      console.log("got error");
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }
 
